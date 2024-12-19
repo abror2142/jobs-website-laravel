@@ -8,9 +8,6 @@ use App\Models\User;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('job_openings', function (Blueprint $table) {
@@ -19,13 +16,16 @@ return new class extends Migration
             $table->string('title');
             $table->string('short_description');
             $table->text('full_description');
+            $table->json('details');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+    // Converts data to json during insertion and retrieving 
+    protected $casts = [
+        'job_details' => 'array'
+    ];
+
     public function down(): void
     {
         Schema::dropIfExists('jobs');
