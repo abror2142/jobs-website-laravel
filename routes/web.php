@@ -1,11 +1,17 @@
 <?php
 
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::post('/company' , [CompanyController::class, 'store']);
+Route::get('/company/create/' , [CompanyController::class, 'create']);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
