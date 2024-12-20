@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -9,8 +10,15 @@ Route::get('/', function () {
 });
 
 
-Route::post('/company' , [CompanyController::class, 'store']);
-Route::get('/company/create/' , [CompanyController::class, 'create']);
+Route::middleware(['auth'])->group(function () {
+    
+    Route::post('/company' , [CompanyController::class, 'store']);
+    Route::get('/company/create/' , [CompanyController::class, 'create']);
+    
+    Route::post('/job' , [JobController::class, 'store']);
+    Route::get('/job/create/' , [JobController::class, 'create']);
+
+}) ;
 
 
 Route::get('/dashboard', function () {

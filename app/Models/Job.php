@@ -15,11 +15,7 @@ class Job extends Model
     protected $table = 'job_openings';
     protected $guarded = [];
 
-    public function user() {
-        return $this->belongsTo(User::class);
-    }
-
-    public function tags ( ) {
+    public function tags () {
         return $this->belongsToMany(Tag::class);
     }
 }
