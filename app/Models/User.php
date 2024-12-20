@@ -6,6 +6,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Job;
+use App\Models\Company;
+
 
 class User extends Authenticatable
 {
@@ -48,6 +51,10 @@ class User extends Authenticatable
 
     public function company ()  {
         return $this->hasOne(Company::class);
+    }
+
+    public function jobs () {
+        return $this->hasManyThrough(Job::class, Company::class);
     }
 
 }

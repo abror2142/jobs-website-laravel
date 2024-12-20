@@ -9,6 +9,11 @@ class JobController extends Controller
 {
     // protected $table = "job_openings";
 
+    public function index (Request $request) {
+        $jobs = $request->user()->jobs()->simplePaginate(2);
+        return view("job.index", ["jobs" => $jobs]);
+    }
+
     public function create (Request $request) {
         return view('job.create');
     }
@@ -24,7 +29,6 @@ class JobController extends Controller
         $attributes['company_id'] = $request->user()->company->id;
 
         $job = Job::create($attributes);
-        dd($job);
 
         return redirect('/');
     }
