@@ -18,9 +18,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/jobs' , [JobController::class, 'index']);
     Route::post('/jobs' , [JobController::class, 'store']);
     Route::get('/jobs/create/' , [JobController::class, 'create']);
-    Route::get('/jobs/{job}/edit' , [JobController::class, 'edit']);
+    Route::get('/jobs/{job}' , [JobController::class, 'show']);
     Route::put('/jobs/{job}' , [JobController::class, 'update']);
     Route::delete('/jobs/{job}' , [JobController::class, 'destroy']);
+    Route::get('/jobs/{job}/edit' , [JobController::class, 'edit']);
 
 }) ;
 

@@ -10,8 +10,12 @@ class JobController extends Controller
     // protected $table = "job_openings";
 
     public function index (Request $request) {
-        $jobs = $request->user()->jobs()->simplePaginate(2);
+        $jobs = $request->user()->jobs()->latest()->simplePaginate(2);
         return view("job.index", ["jobs" => $jobs]);
+    }
+
+    public function show (Job $job) {
+        return view("job.show", ["job" => $job]);
     }
 
     public function create (Request $request) {
