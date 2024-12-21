@@ -6,7 +6,7 @@
                 <i class="fa-solid fa-plus"></i>
             </a>
         </div>
-        <p class="text-2xl font-bold text-center text-gray-50">Jobs</p>
+        <p class="text-2xl font-bold text-center text-gray-50">All Jobs:</p>
         @foreach ($jobs as $job)
             <x-job-list-item href="/jobs/{{ $job->id }}/">
                 <x-slot:jobTitle>
