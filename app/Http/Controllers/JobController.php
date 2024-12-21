@@ -30,6 +30,28 @@ class JobController extends Controller
 
         $job = Job::create($attributes);
 
-        return redirect('/');
+        return redirect('/jobs');
+    }
+    public function edit (Job $job) {
+        return view('job.update', ["job" => $job]);
+    }
+
+    public function update (Request $request, Job $job) {
+        $attributes = $request->validate([
+            "title" => ['required'],
+            "short_description" => ['required'],
+            "full_description" => ['required'],
+        ]);
+
+        $job->update($attributes);
+
+        return redirect('/jobs');
+    }
+
+    public function destroy (Job $job) {
+        $job->delete();
+        return redirect('/jobs');
     }
 }
+
+

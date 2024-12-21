@@ -15,9 +15,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/company' , [CompanyController::class, 'store']);
     Route::get('/company/create/' , [CompanyController::class, 'create']);
     
-    Route::get('/job' , [JobController::class, 'index']);
-    Route::post('/job' , [JobController::class, 'store']);
-    Route::get('/job/create/' , [JobController::class, 'create']);
+    Route::get('/jobs' , [JobController::class, 'index']);
+    Route::post('/jobs' , [JobController::class, 'store']);
+    Route::get('/jobs/create/' , [JobController::class, 'create']);
+    Route::get('/jobs/{job}/edit' , [JobController::class, 'edit']);
+    Route::put('/jobs/{job}' , [JobController::class, 'update']);
+    Route::delete('/jobs/{job}' , [JobController::class, 'destroy']);
 
 }) ;
 

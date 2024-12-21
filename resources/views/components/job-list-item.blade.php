@@ -7,8 +7,11 @@
         </div>
     </div>
     <div class="flex gap-3">
-        <i class="fa-solid fa-trash text-2xl text-red-600"></i>
-        <i class="fa-solid fa-file-pen text-2xl text-blue-600"></i>
+        <x-delete-button action="/jobs/{{ $jobId }}"></x-delete-button>
+        
+        <a href="/jobs/{{$jobId}}/edit/">
+            <i class="fa-solid fa-file-pen text-2xl text-blue-600"></i>
+        </a>
     </div>
 
     {{ $slot }}

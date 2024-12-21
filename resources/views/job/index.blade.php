@@ -12,6 +12,9 @@
                 <x-slot:jobUpdated>
                     {{ $job->updated_at }}
                 </x-slot:jobUpdated>
+                <x-slot:jobId>
+                    {{ $job->id }}
+                </x-slot:jobId>
             </x-job-list-item>
         @endforeach
         {{$jobs->links()}}
