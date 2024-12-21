@@ -13,6 +13,9 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function () {
     
     Route::post('/company' , [CompanyController::class, 'store']);
+    Route::get('/company' , [CompanyController::class, 'index'])->name('company');
+    Route::get('/company/edit' , [CompanyController::class, 'edit']);
+    Route::put('/company' , [CompanyController::class, 'update']);
     Route::get('/company/create/' , [CompanyController::class, 'create']);
     
     Route::get('/jobs' , [JobController::class, 'index'])->name('jobs');

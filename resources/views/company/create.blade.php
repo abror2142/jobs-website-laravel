@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-app-layout>
 
   <form method="POST" enctype="multipart/form-data" action="/company">
     @csrf

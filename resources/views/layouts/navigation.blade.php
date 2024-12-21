@@ -20,7 +20,7 @@
                         {{ __('Jobs') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('jobs')" :active="request()->routeIs('')">
+                    <x-nav-link :href="route('company')" :active="request()->routeIs('company')">
                         {{ __('Your Company') }}
                     </x-nav-link>
                     
