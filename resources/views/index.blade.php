@@ -19,22 +19,23 @@
             </style>
         @endif
     </head>
-    <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-        <nav>
-            <ul>
-            <li>Home</li>             
-            <li>Jobs</li>             
-            <li>About</li>             
-            <li>Contact</li>             
-            <li>Help</li>             
-            </ul>
-        </nav>
+    <body class="font-sans antialiased h-screen flex flex-col justify-between dark:bg-black dark:text-white/50">
+        <x-guest.header>
+
+        </x-guest.header>
+
         <div class="flex flex-col m-auto max-w-3xl gap-4">
             @foreach ($jobs as $job)
                 <x-job-list-item :job="$job" href="/job-detail/{{ $job->id }}">
                     
                 </x-job-list-item>
             @endforeach
+        </div>
+
+        <div>
+            <x-guest.footer>
+
+            </x-guest.footer>
         </div>
     </body>
 </html>
