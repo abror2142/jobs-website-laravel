@@ -4,14 +4,19 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Job;
 
 Route::get('/', function () {
-    return view('welcome');
+    $jobs = Job::all();
+    return view('index', ['jobs'=>$jobs]);
 });
 
+Route::get('/job-detail/{job}', function (Job $job) {
+    return view('job-detail', ['job'=>$job]);
+});
 
 Route::middleware(['auth'])->group(function () {
-    
+    // Compay is determined by $request->user, so no need to check permission
     Route::post('/company' , [CompanyController::class, 'store']);
     Route::get('/company' , [CompanyController::class, 'index'])->name('company');
     Route::get('/company/edit' , [CompanyController::class, 'edit']);
@@ -28,7 +33,6 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/jobs/{job}' , [JobController::class, 'update']);
         Route::delete('/jobs/{job}' , [JobController::class, 'destroy']);
     });
-
 }) ;
 
 

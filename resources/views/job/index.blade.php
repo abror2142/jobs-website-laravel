@@ -8,19 +8,7 @@
         </div>
         <p class="text-2xl font-bold text-center text-gray-50">All Jobs:</p>
         @foreach ($jobs as $job)
-            <x-job-list-item href="/jobs/{{ $job->id }}/">
-                <x-slot:jobTitle>
-                    {{ $job->title }}
-                </x-slot:jobTitle>
-                <x-slot:jobCreated>
-                    {{ $job->created_at }}
-                </x-slot:jobCreated>
-                <x-slot:jobUpdated>
-                    {{ $job->updated_at }}
-                </x-slot:jobUpdated>
-                <x-slot:jobId>
-                    {{ $job->id }}
-                </x-slot:jobId>
+            <x-job-list-item href="/jobs/{{ $job->id }}/" :job="$job" >
             </x-job-list-item>
         @endforeach
         {{$jobs->links()}}
