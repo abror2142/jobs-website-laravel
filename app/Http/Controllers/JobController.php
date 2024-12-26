@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Job;
+use App\Models\Category;
 
 class JobController extends Controller
 {
@@ -11,7 +12,7 @@ class JobController extends Controller
 
     public function index (Request $request) {
         $jobs = $request->user()->jobs()->latest()->simplePaginate(2);
-        return view("job.index", ["jobs" => $jobs]);
+        return view("pages.admin.job.index", ["jobs" => $jobs]);
     }
 
     public function all() {
@@ -24,7 +25,8 @@ class JobController extends Controller
     }
 
     public function create (Request $request) {
-        return view('job.create');
+        $categories = Category::whereNull('parent_id')->get();
+        return view('pages.admin.job.create', ['categories' => $categories]);
     }
 
     public function store (Request $request) {
@@ -33,6 +35,7 @@ class JobController extends Controller
             'title' => ['required'],
             'short_description' => ['required'],
             'full_description' => ['required'],
+            'category_id' => ['required'],
         ]);
 
         $attributes['company_id'] = $request->user()->company->id;
@@ -42,7 +45,7 @@ class JobController extends Controller
         return redirect('/jobs');
     }
     public function edit (Job $job) {
-        return view('job.update', ["job" => $job]);
+        return view('pages.admin.job.update', ["job" => $job]);
     }
 
     public function update (Request $request, Job $job) {

@@ -10,7 +10,7 @@
     </a>
 
     <div class="flex gap-3">
-        <x-delete-button action="/jobs/{{ $job->id }}"></x-delete-button>
+        <x-admin.delete-button action="/jobs/{{ $job->id }}"></x-admin.delete-button>
         
         <a href="/jobs/{{$job->id}}/edit/">
             <i class="fa-solid fa-file-pen text-2xl text-blue-600"></i>

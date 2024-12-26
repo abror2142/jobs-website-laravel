@@ -12,4 +12,9 @@ class Category extends Model
     public function jobs () {
         return $this->hasMany(Job::class);
     }
+
+    public function children()
+    {
+        return $this->hasMany(Category::class, 'parent_id');
+    }
 }
