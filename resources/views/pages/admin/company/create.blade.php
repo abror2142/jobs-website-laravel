@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-admin-layout>
 
   <form method="POST" enctype="multipart/form-data" action="/company">
     @csrf
@@ -62,4 +62,4 @@
     </div>
   </form>
 
-</x-guest-layout>
+</x-admin-layout>

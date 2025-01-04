@@ -66,6 +66,7 @@
 
                 select.addEventListener('change', function () {
                     const selectedCategoryId = select.value;
+                    console.log(select.parentElement)
                     if (selectedCategoryId) {
                         // Fetch child categories if available
                         fetchCategories(selectedCategoryId, select);
@@ -98,22 +99,24 @@
                     .then(response => response.json())
                     .then(data => {
                         /// Find the next select element
-                        const nextSelectDiv = parentSelect.parentElement.querySelector('div[id^="category_"][id$="_div"]');
-                        
+                        const nextSelectDiv = parentSelect.parentElement;
                         // Check if the nextSelectDiv exists before accessing it
                         if (nextSelectDiv) {
+                            console.log('Element', data)
                             if (data.length > 0) {
                                 nextSelectDiv.style.display = 'block';
                                 createSelect(data, parentSelect);
                             } else {
-                                nextSelectDiv.style.display = 'none';
+                                // nextSelectDiv.style.display = 'none';
+                                // this is the end
+                                parentSelect.name = 'category_id'
                             }
                         }
                     });
             }
 
             // Initial select creation
-            document.getElementById('category_1').addEventListener('change', function () {
+            document.getElementById('category_0').addEventListener('change', function () {
                 const selectedCategoryId = this.value;
                 if (selectedCategoryId) {
                     fetchCategories(selectedCategoryId, this);

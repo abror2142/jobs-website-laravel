@@ -30,19 +30,15 @@ class JobController extends Controller
     }
 
     public function store (Request $request) {
-
         $attributes = $request->validate([
             'title' => ['required'],
             'short_description' => ['required'],
             'full_description' => ['required'],
             'category_id' => ['required'],
         ]);
-
         $attributes['company_id'] = $request->user()->company->id;
-
         $job = Job::create($attributes);
-
-        return redirect('/jobs');
+        return redirect('/admin/jobs');
     }
     public function edit (Job $job) {
         return view('pages.admin.job.update', ["job" => $job]);

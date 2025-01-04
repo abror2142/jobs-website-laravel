@@ -6,9 +6,9 @@
         
         <div id="category-container">
           <!-- First Select: Top-level categories -->
-          <div id="category_1_div">
-              <label for="category_1" class="block text-lg font-medium text-gray-700">Category 1</label>
-              <select id="category_1" name="category_1" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+          <div id="category_0_div">
+              <label for="category_0" class="block text-lg font-medium text-gray-700">Category</label>
+              <select id="category_0" name="category_0" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
                   <option value="">Select Category</option>
                   @foreach ($categories as $category)
                       <option value="{{ $category->id }}">{{ $category->name }}</option>

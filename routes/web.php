@@ -10,7 +10,7 @@ Route::get('/', function () {
 
 Route::view('/about', 'pages.guest.about');
 Route::view('/contact', 'pages.guest.contact');
-Route::view('/jobs', 'pages.guest.jobs');
+Route::view('/all-jobs', 'pages.guest.jobs');
 
 Route::get('/job-detail/{job}', function (Job $job) {
     return view('job-detail', ['job'=>$job]);

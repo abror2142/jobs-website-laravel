@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\File;
 class CompanyController extends Controller
 {
     public function index (Request $request) {
-        return view("company.index", ["company" => $request->user()->company]);
+        return view("pages.admin.company.index", ["company" => $request->user()->company]);
     }
 
     public function edit (Request $request) {
-        return view ('company.update', ['company' => $request->user()->company]);
+        return view ('pages.admin.company.update', ['company' => $request->user()->company]);
     }
 
     public function update (Request $request) {
@@ -47,7 +47,7 @@ class CompanyController extends Controller
     }
 
     public function create () {
-        return view('company.create');
+        return view('pages.admin.company.create');
     }
 
     public function store (Request $request) {
