@@ -9,6 +9,10 @@
         </div>
     </a>
 
+    <div>
+        {{ $job->active}}
+    </div>
+
     <div class="flex gap-3">
         <x-admin.delete-button action="/jobs/{{ $job->id }}"></x-admin.delete-button>
         

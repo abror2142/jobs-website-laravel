@@ -2,10 +2,10 @@
     <a href="/admin/jobs/" class="w-[180px] h-[40px] bg-gray-600 flex gap-2 items-center justify-center rounded text-white hover:bg-gray-500">
         All Jobs
     </a>
-    <a href="/admin/jobs/create" class="w-[180px] h-[40px] bg-gray-600 flex gap-2 items-center justify-center rounded text-white hover:bg-gray-500">
+    <a href="/admin/jobs/active" class="w-[180px] h-[40px] bg-gray-600 flex gap-2 items-center justify-center rounded text-white hover:bg-gray-500">
         Active Jobs
     </a>
-    <a href="/admin/jobs/create" class="w-[180px] h-[40px] bg-gray-600 flex gap-2 items-center justify-center rounded text-white hover:bg-gray-500">
+    <a href="/admin/jobs/inactive" class="w-[180px] h-[40px] bg-gray-600 flex gap-2 items-center justify-center rounded text-white hover:bg-gray-500">
         Archive Jobs
     </a>
     <a href="/admin/jobs/create" class="w-[180px] h-[40px] bg-gray-600 flex gap-2 items-center justify-center rounded text-white hover:bg-gray-500">

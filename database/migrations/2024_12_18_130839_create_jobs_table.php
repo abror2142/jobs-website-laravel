@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('short_description');
             $table->text('full_description');
             $table->json('details')->nullable();
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }

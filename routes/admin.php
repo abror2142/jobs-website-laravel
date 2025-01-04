@@ -20,6 +20,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::get('/company/create' , [CompanyController::class, 'create']);
         
         Route::get('/jobs' , [JobController::class, 'index'])->name('jobs');
+        Route::get('/jobs/active' , [JobController::class, 'active'])->name('jobs.active');
+        Route::get('/jobs/inactive' , [JobController::class, 'inactive'])->name('jobs.inactive');
         Route::post('/jobs' , [JobController::class, 'store']);
         Route::get('/jobs/create' , [JobController::class, 'create']);
         Route::get('/jobs/{job}' , [JobController::class, 'show']);

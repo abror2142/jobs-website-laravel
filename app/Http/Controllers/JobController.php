@@ -15,6 +15,16 @@ class JobController extends Controller
         return view("pages.admin.job.index", ["jobs" => $jobs]);
     }
 
+    public function active (Request $request) {
+        $jobs = $request->user()->jobs()->where('active', true)->latest()->simplePaginate(2);
+        return view("pages.admin.job.active", ["jobs" => $jobs]);
+    }
+
+    public function inactive (Request $request) {
+        $jobs = $request->user()->jobs()->where('active', false)->latest()->simplePaginate(2);
+        return view("pages.admin.job.inactive", ["jobs" => $jobs]);
+    }
+
     public function all() {
         $jobs = Job::all();
         return $jobs;
@@ -37,9 +47,13 @@ class JobController extends Controller
             'category_id' => ['required'],
         ]);
         $attributes['company_id'] = $request->user()->company->id;
+
+        $attributes["active"] = $request->get("active") === "on" ?  true : false;
+
         $job = Job::create($attributes);
         return redirect('/admin/jobs');
     }
+
     public function edit (Job $job) {
         return view('pages.admin.job.update', ["job" => $job]);
     }
