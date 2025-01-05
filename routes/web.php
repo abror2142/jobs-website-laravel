@@ -2,11 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Job;
+use App\Http\Controllers\GuestController;
 
-Route::get('/', function () {
-    $jobs = Job::all();
-    return view('pages.guest.index', ['jobs'=>$jobs]);
-});
+Route::get('/', [GuestController::class, 'index']);
 
 Route::view('/about', 'pages.guest.about');
 Route::view('/contact', 'pages.guest.contact');

@@ -9,8 +9,8 @@
     </nav>
 
     <div class="flex gap-2">
-        <a href="#">Sign In</a>
+        <a href="">Sign In</a>
         |
-        <a href="/dashboard">For Employers</a>
+        <a href="/admin">For Employers</a>
     </div>
 </header>
