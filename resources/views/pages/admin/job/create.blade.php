@@ -24,6 +24,28 @@
           </div>
         </div>
 
+        <!-- Tags -->
+        <div class="mb-6">
+          <p class="block text-sm font-medium text-gray-700 mb-2">Select Tags:</p>
+          <div class="flex flex-wrap gap-2">
+              @foreach($tags as $tag)
+                <label 
+                    class="block cursor-pointer px-4 py-2 rounded-md border border-gray-300 bg-gray-200 text-gray-700 hover:bg-gray-300 transition duration-200"
+                >
+                    <input 
+                        type="checkbox" 
+                        name="tags[]" 
+                        value="{{ $tag->id }}" 
+                        class="hidden"
+                        onchange="this.parentElement.classList.toggle('bg-blue-500'); this.parentElement.classList.toggle('text-white');"
+                    >
+                    {{ $tag->name }}
+                </label>
+              @endforeach
+          </div>
+      </div>
+      </div>
+
         <div class="">
           <label for="short_description" class="block font-medium ml-1">Short description.</label>
           <div class="flex items-center rounded-md bg-white outline outline-1 -outline-offset-1 outline-gray-300 focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">

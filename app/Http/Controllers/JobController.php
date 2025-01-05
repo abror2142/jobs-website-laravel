@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Job;
+use App\Models\Tag;
 use App\Models\Category;
 
 class JobController extends Controller
@@ -36,21 +37,39 @@ class JobController extends Controller
 
     public function create (Request $request) {
         $categories = Category::whereNull('parent_id')->get();
-        return view('pages.admin.job.create', ['categories' => $categories]);
+        $tags = Tag::all();
+        $data = [
+            'categories' => $categories,
+            'tags' => $tags,
+        ]; 
+        return view('pages.admin.job.create', $data);
     }
 
     public function store (Request $request) {
-        $attributes = $request->validate([
+        $validatedData = $request->validate([
             'title' => ['required'],
             'short_description' => ['required'],
             'full_description' => ['required'],
             'category_id' => ['required'],
+            'tags' => 'array', // Ensure 'tags' is an array
+            'tags.*' => 'integer|exists:tags,id', // Validate each tag ID
         ]);
+
+        $attributes = [
+            'title' => $validatedData['title'],
+            'short_description' => $validatedData['short_description'],
+            'full_description' => $validatedData['full_description'],
+            'category_id' => $validatedData['category_id']
+        ];
+
         $attributes['company_id'] = $request->user()->company->id;
 
-        $attributes["active"] = $request->get("active") === "on" ?  true : false;
+        $attributes['active'] = $request->get('active') === 'on' ?  true : false;
 
         $job = Job::create($attributes);
+        if (!empty($validatedData['tags'])) {
+            $job->tags()->attach($validatedData['tags']);
+        }
         return redirect('/admin/jobs');
     }
 
