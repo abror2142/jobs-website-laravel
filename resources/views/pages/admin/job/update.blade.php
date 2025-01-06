@@ -1,40 +1,107 @@
-<x-app-layout> 
-  <form method="POST" action="/jobs/{{$job->id}}" class="max-w-2xl m-auto bg-gray-800 p-6 dark:text-gray-50 mt-10">
+<x-admin-layout>
+  <form method="POST" action="/admin/jobs/{{$job->id}}" class="max-w-2xl m-auto bg-gray-800 p-6 dark:text-gray-50 mt-10">
     @csrf
     @method('PUT')
 
-    <div class="space-y-12">
-      <div class="border-b border-gray-900/10 ">
-        <h2 class="text-2xl font-bold text-center">Update Job</h2>
-        <div class="mt-2 flex flex-col gap-4">
-          <div class="">
-            <label for="title" class="block font-medium">Job title</label>
-            <div class="flex items-center rounded-md bg-white outline outline-1 -outline-offset-1 outline-gray-300 focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
-              <input type="text" name="title" id="title" value={{ $job->title }} class="rounded-md block min-w-0 grow py-1.5 pl-3 pr-3 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 sm:text-sm/6" placeholder="Senior Manager">
-            </div>
-          </div>
-
-          <div class="">
-            <label for="short_description" class="block font-medium">Short description</label>
-            <div class="flex items-center rounded-md bg-white outline outline-1 -outline-offset-1 outline-gray-300 focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
-              <input type="text" name="short_description"  value={{ $job->short_description }} id="short_description" class="rounded-md block min-w-0 grow py-1.5 pl-3 pr-3 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 sm:text-sm/6">
-            </div>
-          </div>
-
-          <div class="">
-            <label for="full_description" class="block font-medium">Write a few sentences about the job.</label>
-            <div class="">
-              <textarea name="full_description" id="full_description" rows="3" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">{{ $job->full_description }}</textarea>
-            </div>
-          </div>
-        </div>
+    <h2 class="text-2xl font-bold text-center">Update Job</h2>
+    
+    <!-- Category Selection -->
+    <div id="category-container">
+      <div id="category_0_div">
+        <label for="category_0" class="block text-lg font-medium text-gray-700">Category</label>
+        <select id="category_0" name="category_0" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+          <option value="">Select Category</option>
+          @foreach ($categories as $category)
+            <option 
+              value="{{ $category->id }}" 
+              {{ $job->category_id == $category->id ? 'selected' : '' }}
+            >
+              {{ $category->name }}
+            </option>
+          @endforeach
+        </select>
       </div>
     </div>
 
-    <div class="mt-5 flex items-center justify-end gap-x-6">
-      <button type="button" class="text-sm/6 font-semibold">Cancel</button>
-      <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold  shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Update</button>
+    <!-- Job Title -->
+    <div class="mb-4">
+      <label for="title" class="block font-medium ml-1">Job Title</label>
+      <input 
+        type="text" 
+        name="title" 
+        id="title" 
+        value="{{ old('title', $job->title) }}" 
+        class="rounded-md block w-full px-3 py-1.5 text-gray-900 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        placeholder="Senior Manager"
+      >
+    </div>
+
+    <!-- Tags -->
+    <div class="mb-6">
+      <p class="block text-sm font-medium text-gray-700 mb-2">Select Tags:</p>
+      <div class="flex flex-wrap gap-2">
+        @foreach($tags as $tag)
+          <label 
+            class="block cursor-pointer px-4 py-2 rounded-md border border-gray-300 bg-gray-200 text-gray-700 hover:bg-gray-300 transition duration-200 {{ $job->tags->contains($tag->id) ? 'bg-blue-500 text-white hover:bg-blue-400' : '' }}"
+          >
+            <input 
+              type="checkbox" 
+              name="tags[]" 
+              value="{{ $tag->id }}" 
+              class="hidden"
+              {{ $job->tags->contains($tag->id) ? 'checked' : '' }}
+            >
+            {{ $tag->name }}
+          </label>
+        @endforeach
+      </div>
+    </div>
+
+    <!-- Short Description -->
+    <div class="mb-4">
+      <label for="short_description" class="block font-medium ml-1">Short Description</label>
+      <input 
+        type="text" 
+        name="short_description" 
+        id="short_description" 
+        value="{{ old('short_description', $job->short_description) }}" 
+        class="rounded-md block w-full px-3 py-1.5 text-gray-900 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        placeholder="Brief description of the job"
+      >
+    </div>
+
+    <!-- Full Description -->
+    <div class="mb-4">
+      <label for="full_description" class="block font-medium ml-1">Full Description</label>
+      <textarea 
+        name="full_description" 
+        id="full_description" 
+        rows="3" 
+        class="block w-full rounded-md px-3 py-1.5 text-gray-900 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+      >{{ old('full_description', $job->full_description) }}</textarea>
+    </div>
+
+    <!-- Active Checkbox -->
+    <div class="flex items-center mb-4">
+      <input 
+        id="active-checkbox" 
+        type="checkbox" 
+        name="active" 
+        value="1"
+        {{ $job->active ? 'checked' : '' }}
+        class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+      >
+      <label for="active-checkbox" class="ml-2 text-sm font-medium text-gray-700">Active (will be published)</label>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="flex items-center justify-center">
+      <button 
+        type="submit" 
+        class="rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-500 focus:ring-2 focus:ring-indigo-500"
+      >
+        Save
+      </button>
     </div>
   </form>
-
-</x-app-layout>
+</x-admin-layout>

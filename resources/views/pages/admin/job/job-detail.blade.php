@@ -1,3 +1,3 @@
-<x-guest-layout>
+<x-admin-layout>
     {{ $job->title }}
-</x-guest-layout>
+</x-admin-layout>

@@ -43,7 +43,7 @@ class JobController extends Controller
     }
 
     public function show (Job $job) {
-        return view("job.show", ["job" => $job]);
+        return view("pages.admin.job.show", ["job" => $job]);
     }
 
     public function create (Request $request) {
@@ -85,7 +85,14 @@ class JobController extends Controller
     }
 
     public function edit (Job $job) {
-        return view('pages.admin.job.update', ["job" => $job]);
+        $categories = Category::whereNull('parent_id')->get();
+        $tags = Tag::all();
+        $data = [
+            'categories' => $categories,
+            'tags' => $tags,
+            "job" => $job,
+        ]; 
+        return view('pages.admin.job.update', $data);
     }
 
     public function update (Request $request, Job $job) {
@@ -97,12 +104,12 @@ class JobController extends Controller
 
         $job->update($attributes);
 
-        return redirect('/jobs');
+        return redirect('/admin/jobs');
     }
 
     public function destroy (Job $job) {
         $job->delete();
-        return redirect('/jobs');
+        return redirect('/admin/jobs');
     }
 }
 

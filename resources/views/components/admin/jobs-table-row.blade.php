@@ -2,7 +2,7 @@
 
 <tr {{ $attributes->merge(['class' => 'bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600'])}} >
     <td scope="row" class="px-4 py-2 text-gray-900 whitespace-nowrap dark:text-white border border-gray-400">
-        <a class="flex flex-col grow" href="/jobs/{{ $job->id }}">
+        <a class="flex flex-col grow" href="/admin/jobs/{{ $job->id }}">
             <p class="text-2xl font-semibold">{{ $job->title }}</p>
             <div class="flex gap-4 text-sm">
                 <p><span class="font-medium">Created at: </span>{{ $job->created_at }}</p>
@@ -28,11 +28,11 @@
     </td>
     
     <td class="text-center border border-gray-400">
-        <x-admin.delete-button action="/jobs/{{ $job->id }}"></x-admin.delete-button>
+        <x-admin.delete-button action="/admin/jobs/{{ $job->id }}"></x-admin.delete-button>
     </td>
     
     <td class="text-center border border-gray-400"> 
-        <a href="/jobs/{{$job->id}}/edit/">
+        <a href="/admin/jobs/{{$job->id}}/edit/">
             <i class="fa-solid fa-file-pen text-2xl text-blue-600"></i>
         </a>
     </td>
