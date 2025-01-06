@@ -12,17 +12,17 @@ class JobController extends Controller
     // protected $table = "job_openings";
 
     public function index (Request $request) {
-        $jobs = $request->user()->jobs()->latest()->simplePaginate(2);
+        $jobs = $request->user()->jobs()->latest()->simplePaginate(10);
         return view("pages.admin.job.index", ["jobs" => $jobs]);
     }
 
     public function active (Request $request) {
-        $jobs = $request->user()->jobs()->where('active', true)->latest()->simplePaginate(2);
+        $jobs = $request->user()->jobs()->where('active', true)->latest()->simplePaginate(10);
         return view("pages.admin.job.active", ["jobs" => $jobs]);
     }
 
     public function inactive (Request $request) {
-        $jobs = $request->user()->jobs()->where('active', false)->latest()->simplePaginate(2);
+        $jobs = $request->user()->jobs()->where('active', false)->latest()->simplePaginate(10);
         return view("pages.admin.job.inactive", ["jobs" => $jobs]);
     }
 

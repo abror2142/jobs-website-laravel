@@ -1,7 +1,7 @@
 <x-admin-layout> 
-    <form method="POST" action="/admin/jobs" class="max-w-xl m-auto bg-gray-200 rounded dark:bg-gray-800 px-6 dark:text-gray-50">
+    <form method="POST" action="/admin/jobs" class="max-w-xl m-auto bg-gray-200 rounded dark:bg-gray-800 px-6 dark:text-gray-50 py-4 space-y-4">
       @csrf
-      <div class="py-4 space-y-4">
+     
         <h2 class="text-2xl font-bold text-center">Create Job</h2>
         
         <div id="category-container">
@@ -15,36 +15,38 @@
                   @endforeach
               </select>
           </div>
-      </div>
-        
-        <div class="">
-          <label for="title" class="block font-medium ml-1">Job title.</label>
-          <div class="flex items-center rounded-md bg-white outline outline-1 -outline-offset-1 outline-gray-300 focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
-            <input type="text" name="title" id="title" class="rounded-md block min-w-0 grow py-1.5 pl-3 pr-3 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 sm:text-sm/6" placeholder="Senior Manager">
-          </div>
         </div>
+      
+        
+      <!-- Job Title -->
+      <div class="">
+        <label for="title" class="block font-medium ml-1">Job title.</label>
+        <div class="flex items-center rounded-md bg-white outline outline-1 -outline-offset-1 outline-gray-300 focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
+          <input type="text" name="title" id="title" class="rounded-md block min-w-0 grow py-1.5 pl-3 pr-3 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 sm:text-sm/6" placeholder="Senior Manager">
+        </div>
+      </div>
 
         <!-- Tags -->
-        <div class="mb-6">
-          <p class="block text-sm font-medium text-gray-700 mb-2">Select Tags:</p>
-          <div class="flex flex-wrap gap-2">
-              @foreach($tags as $tag)
-                <label 
-                    class="block cursor-pointer px-4 py-2 rounded-md border border-gray-300 bg-gray-200 text-gray-700 hover:bg-gray-300 transition duration-200"
-                >
-                    <input 
-                        type="checkbox" 
-                        name="tags[]" 
-                        value="{{ $tag->id }}" 
-                        class="hidden"
-                        onchange="this.parentElement.classList.toggle('bg-blue-500'); this.parentElement.classList.toggle('text-white');"
-                    >
-                    {{ $tag->name }}
-                </label>
-              @endforeach
-          </div>
+      <div class="mb-6">
+        <p class="block text-sm font-medium text-gray-700 mb-2">Select Tags:</p>
+        <div class="flex flex-wrap gap-2">
+            @foreach($tags as $tag)
+              <label 
+                  class="block cursor-pointer px-4 py-2 rounded-md border border-gray-300 bg-gray-200 text-gray-700 hover:bg-gray-300 transition duration-200"
+              >
+                  <input 
+                      type="checkbox" 
+                      name="tags[]" 
+                      value="{{ $tag->id }}" 
+                      class="hidden"
+                      onchange="this.parentElement.classList.toggle('bg-blue-500'); this.parentElement.classList.toggle('text-white'); this.parentElement.classList.toggle('hover:bg-blue-400')"
+                  >
+                  {{ $tag->name }}
+              </label>
+            @endforeach
+        </div>
       </div>
-      </div>
+      
 
         <div class="">
           <label for="short_description" class="block font-medium ml-1">Short description.</label>
@@ -60,9 +62,10 @@
           </div>
         </div>
 
-        <div class="flex items-center gap-2">
-          <input id="active-checkbox" type="checkbox" name="active" checked/>
-          <label for="active-checkbox">Active (will be pulished)</label>
+        <div class="flex items-center ps-3">
+          <input id="active-checkbox" type="checkbox" name="active" checked class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+          <label for="active-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Active (will be pulished)</label>
+        
         </div>
 
         <div class="flex items-center justify-center">
