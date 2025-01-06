@@ -123,6 +123,14 @@
                 }
             });
         });
+
+        function activationToggle(e, form_id) {
+            e.preventDefault();
+            console.log(e);
+            if(confirm('Confirm Change?')) {
+                document.forms[`activationForm-${form_id}`].submit();
+            }
+        }
         </script>
     </body>
 </html>

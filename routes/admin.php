@@ -25,6 +25,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::post('/jobs' , [JobController::class, 'store']);
         Route::get('/jobs/create' , [JobController::class, 'create']);
         Route::get('/jobs/{job}' , [JobController::class, 'show']);
+        Route::post('/jobs/{job}/activate', [JobController::class,'activate_job']);
         Route::get('/get-categories/{parentId?}', [CategoryController::class, 'getCategories']);
         
         Route::middleware(['can:edit,job'])->group( function () {

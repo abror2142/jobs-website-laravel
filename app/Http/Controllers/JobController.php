@@ -26,6 +26,17 @@ class JobController extends Controller
         return view("pages.admin.job.inactive", ["jobs" => $jobs]);
     }
 
+    public function activate_job(Request $request, Job $job) {
+        $status = $request->get("activation-checkbox");
+        if($status && $status == 'on') {
+            $job->active = true;
+        }else {
+            $job->active = false;
+        }
+        $job->save();
+        return redirect()->back()->with("success","Activated!");
+    }
+
     public function all() {
         $jobs = Job::all();
         return $jobs;
