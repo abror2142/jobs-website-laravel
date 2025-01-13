@@ -9,8 +9,6 @@ use App\Models\Category;
 
 class JobController extends Controller
 {
-    // protected $table = "job_openings";
-
     public function index (Request $request) {
         $jobs = $request->user()->jobs()->latest()->simplePaginate(10);
         return view("pages.admin.job.index", ["jobs" => $jobs]);
