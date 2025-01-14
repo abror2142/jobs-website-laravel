@@ -14,6 +14,11 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <script src="https://kit.fontawesome.com/9f05e44f8a.js" crossorigin="anonymous"></script>
+        <style>
+            .flex input { /* or put a custom class on your input, such as input-flex */
+                min-width: 0;
+            }
+        </style>
     </head>
     <body class="font-sans antialiased">
         <div class="h-screen flex flex-col justify-between">
@@ -131,6 +136,7 @@
                 document.forms[`activationForm-${form_id}`].submit();
             }
         }
+
         </script>
     </body>
 </html>

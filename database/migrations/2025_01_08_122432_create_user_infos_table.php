@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('personal_phone_number')->nullable();
             $table->string('work_phone_number')->nullable();
             $table->string('home_phone_number')->nullable();
+            $table->string('gender')->nullable();
+    
             $table->string('image_url')->nullable();
             $table->timestamps();
         });
