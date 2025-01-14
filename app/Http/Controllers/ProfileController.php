@@ -7,6 +7,7 @@ use App\Models\UserInfo;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -26,11 +27,23 @@ class ProfileController extends Controller
         $request->validate([
             'image' => ['required', 'file', 'mimes:jpeg,png,jpg,gif', 'max:4096']
         ]);
+
+        $path = public_path('images/user/');
+        
+        // Clean the Old Photo
+        $info = $request->user()->user_info;
+        if($info->image_url != NULL) {
+            $image_path = public_path($info->image_url);
+
+            if(File::exists($image_path)){
+                File::delete($image_path);
+            }
+        }
+
         $image = $request->image;
         $imageName = time() . '.' . $image->extension();
-        $image->move(public_path('images/user'), $imageName);
+        $image->move($path, $imageName);
         
-        $info = $request->user()->user_info;
         $info->image_url = 'images/user/' . $imageName;
         $info->save();
         return redirect()->back();
