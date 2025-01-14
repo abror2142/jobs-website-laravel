@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\UserInfo;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,20 @@ class ProfileController extends Controller
         $user_info = $request->user()->user_info;
 
         return view('pages.admin.profile.profile', ["user_info" => $user_info]);
+    }
+
+    public function upload_image(Request $request) {
+        $request->validate([
+            'image' => ['required', 'file', 'mimes:jpeg,png,jpg,gif', 'max:4096']
+        ]);
+        $image = $request->image;
+        $imageName = time() . '.' . $image->extension();
+        $image->move(public_path('images/user'), $imageName);
+        
+        $info = $request->user()->user_info;
+        $info->image_url = 'images/user/' . $imageName;
+        $info->save();
+        return redirect()->back();
     }
 
     public function edit(Request $request): View

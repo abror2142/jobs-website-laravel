@@ -12,8 +12,8 @@
 
         <div class="w-full flex gap-4">
             <div class="flex flex-col gap-2 items-center justify-center">
-                @if (auth()->user()->image)
-                    <img class="rounded-full bg-gray-200" width="120px" height="120px"/>
+                @if ($user_info->image_url)
+                    <img src="{{ asset($user_info->image_url) }}" class="rounded-full bg-gray-200" width="120px" height="120px"/>
                 @else
                     <p class="w-[120px] h-[120px] rounded-full bg-gray-200 text-7xl text-gray-500 flex items-center justify-center">
                         @if ($user_info->first_name !== NULL && $user_info->last_name !== NULL)
@@ -23,9 +23,9 @@
                         @endif
                     </p>
                 @endif
-                <form method="POST" action="" enctype="multipart/form-data" class="userImageForm">
+                <form method="POST" action="/admin/profile/image-upload" enctype="multipart/form-data" class="userImageForm">
                     @csrf
-                    <label for="uploadFile1"
+                    <label for="uploadUserImage"
                         class="flex bg-gray-800 hover:bg-gray-700 text-white text-base px-3 py-1 outline-none rounded w-max cursor-pointer mx-auto font-[sans-serif]">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mr-2 fill-white inline" viewBox="0 0 32 32">
                             <path
@@ -40,7 +40,7 @@
                             @else
                                 Change
                             @endif
-                        <input type="file" id='uploadUserImage' class="hidden" onchange="form.submit()" />
+                        <input type="file" id='uploadUserImage' class="hidden" name="image" onchange="form.submit()" />
                     </label>
                 </form>
             </div>

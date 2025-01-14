@@ -35,6 +35,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         });
 
         Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+        Route::post('/profile/image-upload', [ProfileController::class, 'upload_image'])->name('profile.image_upload');
         // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
