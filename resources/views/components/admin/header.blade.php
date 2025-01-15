@@ -6,7 +6,6 @@
     <div class="group relative flex flex-col gap-3 items-center">
         <!-- Profile Section -->
         <div class="flex items-center h-12">
-
             <div class="bg-gray-300 rounded-s-full
                         group-hover:rounded-none group-hover:rounded-tl-3xl">
                 <img src="{{ asset(auth()->user()->user_info->image_url) }}" width="50px" class="rounded-full" />
@@ -16,18 +15,17 @@
                         group-hover:rounded-none group-hover:rounded-tr-3xl">
                 {{ request()->user()->name }}
             </p>
-    
         </div>
     
         <!-- Logout Forms -->
         <div class="invisible group-hover:visible flex flex-col items-center justify-between gap-2 bg-gray-300
                     absolute top-0 translate-y-1/2 left-0 w-full px-4 py-3
                     rounded-b-3xl">
-            <x-admin.logout-form></x-admin.logout-form>
-            <a href="" class="flex gap-2 justify-between items-center w-full hover:bg-gray-400 px-2 py-1">
-                Settings
+            <a href="/admin/profile" class="flex gap-2 justify-between items-center w-full hover:bg-gray-400 px-2 py-1">
+                Profile
                 <i class="fa-solid fa-gear"></i>
             </a>
+            <x-admin.logout-form></x-admin.logout-form>
         </div>
     </div>
 </div>
