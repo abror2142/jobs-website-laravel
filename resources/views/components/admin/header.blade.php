@@ -24,7 +24,7 @@
                     absolute top-0 translate-y-1/2 left-0 w-full px-4 py-3
                     rounded-b-3xl">
             <x-admin.logout-form></x-admin.logout-form>
-            <a class="flex gap-2 justify-between items-center w-full hover:bg-gray-400 px-2 py-1">
+            <a href="" class="flex gap-2 justify-between items-center w-full hover:bg-gray-400 px-2 py-1">
                 Settings
                 <i class="fa-solid fa-gear"></i>
             </a>
