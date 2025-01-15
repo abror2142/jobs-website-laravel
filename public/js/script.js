@@ -104,4 +104,4 @@ function activationToggle(e, form_id) {
     if(confirm('Confirm Change?')) {
         document.forms[`activationForm-${form_id}`].submit();
     }
-}
+};

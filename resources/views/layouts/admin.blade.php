@@ -12,8 +12,10 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/admin.js'])
+        @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/script.js'])
         <script src="https://kit.fontawesome.com/9f05e44f8a.js" crossorigin="anonymous"></script>
+        
+        <script src="{{ asset('js/script.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
         <div class="h-screen flex flex-col justify-between">
@@ -28,6 +30,6 @@
                 </div>
             </main>
         </div>
-
+        {{-- <script type="text/javascript" src="{{ URL::asset ('js/admin.js') }}"></script> --}}
     </body>
 </html>

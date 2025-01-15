@@ -1,5 +1,5 @@
 <div class="bg-gray-200 flex justify-between items-center px-6 py-4">
-    <div class="w-[150px] h-[40px] bg-gray-600">
+    <div class="w-[150px] h-full bg-gray-600">
 
     </div>
 

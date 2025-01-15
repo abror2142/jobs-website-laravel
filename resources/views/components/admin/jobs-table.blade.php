@@ -9,7 +9,9 @@
     </thead>
     <tbody>
         @foreach ($jobs as $job)
-            <x-admin.jobs-table-row href="/jobs/{{ $job->id }}/" :job="$job" >
+            <x-admin.jobs-table-row 
+                href="/jobs/{{ $job->id }}/" 
+                :job="$job" >
             </x-admin.jobs-table-row>
         @endforeach
     </tbody>
